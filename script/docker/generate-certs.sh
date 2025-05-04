@@ -19,9 +19,8 @@ x509_extensions = v3_req
 prompt = no
 
 [req_distinguished_name]
-C = US
-ST = WA
-O = SqlPostgresHostConsole
+C = IN
+ST = KA
 CN = $DOMAIN
 
 [v3_req]
@@ -34,8 +33,8 @@ DNS.1 = $DOMAIN
 IP.1 = 127.0.0.1
 EOF
 
-keytool -keystore server.keystore.jks -alias $DOMAIN -validity 365 -genkey -keyalg RSA -dname "C=US, ST=WA, O=SqlPostgresHostConsole, CN=$DOMAIN" -keypass $PASSWORD -storepass $PASSWORD && \
-openssl req -new -x509 -keyout ca-key -out ca-cert -days 365 -passout pass:"$PASSWORD" -subj "/C=US/ST=WA/O=SqlPostgresHostConsole/CN=$DOMAIN" -config $OPENSSL_CONF_SAN && \
+keytool -keystore server.keystore.jks -alias $DOMAIN -validity 365 -genkey -keyalg RSA -dname "C=IN, ST=KA, CN=$DOMAIN" -keypass $PASSWORD -storepass $PASSWORD && \
+openssl req -new -x509 -keyout ca-key -out ca-cert -days 365 -passout pass:"$PASSWORD" -subj "/C=IN/ST=KA/CN=$DOMAIN" -config $OPENSSL_CONF_SAN && \
 keytool -keystore server.keystore.jks -alias CARoot -import -file ca-cert -storepass $PASSWORD -noprompt && \
 keytool -keystore server.keystore.jks -alias $DOMAIN -certreq -file cert-file -storepass $PASSWORD && \
 openssl x509 -req -CA ca-cert -CAkey ca-key -in cert-file -out cert-signed -days 365 -CAcreateserial -passin pass:$PASSWORD -extensions v3_req -extfile $OPENSSL_CONF_SAN && \
