@@ -27,11 +27,10 @@
       <artifactId>jackson-annotations</artifactId>
       <version>2.17.0</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.azure/azure-spring-data-cosmos -->
     <dependency>
       <groupId>com.azure</groupId>
-      <artifactId>azure-spring-data-cosmos</artifactId>
-      <version>3.46.0</version>
+      <artifactId>azure-cosmos</artifactId>
+      <version>4.0.0-preview.1</version>
     </dependency>
     <dependency>
       <groupId>org.testcontainers</groupId>

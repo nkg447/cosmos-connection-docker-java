@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export DOMAIN="localhost"
+export DOMAIN="cosmos"
 export PASSWORD="changeit"
 
 # ensure docker is up
