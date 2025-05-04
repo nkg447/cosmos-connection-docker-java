@@ -1,7 +1,6 @@
 package com.cosmos.demo.example;
 
 import com.azure.cosmos.*;
-import com.google.common.collect.Lists;
 
 public class CosmosConnection {
     private static final String COSMOS_DB_URI = "https://localhost:8081/";
@@ -10,18 +9,10 @@ public class CosmosConnection {
     private CosmosClient cosmosClient;
 
     public CosmosConnection() {
-        ConnectionPolicy defaultPolicy = ConnectionPolicy.getDefaultPolicy();
-        defaultPolicy.setUserAgentSuffix("CosmosDBJavaQuickstart");
-        //  Setting the preferred location to Cosmos DB Account region
-        //  West US is just an example. User should set preferred location to the Cosmos DB region closest to the application
-        defaultPolicy.setPreferredLocations(Lists.newArrayList("West US"));
-        //  Create sync client
-        //  <CreateSyncClient>
         cosmosClient = new CosmosClientBuilder()
-                .setEndpoint(COSMOS_DB_URI)
-                .setKey(PRIMARY_KEY)
-                .setConnectionPolicy(defaultPolicy)
-                .setConsistencyLevel(ConsistencyLevel.EVENTUAL)
+                .endpoint(COSMOS_DB_URI)
+                .key(PRIMARY_KEY)
+                .directMode()
                 .buildClient();
     }
 
