@@ -1,6 +1,5 @@
 #!/bin/bash
 
-export DOMAIN="localhost"
 export PASSWORD="changeit"
 
 # ensure docker is up
@@ -19,5 +18,5 @@ fi
 
 docker build -t ssl-cert-gen .
 docker run -e DOMAIN=$DOMAIN -e PASSWORD=$PASSWORD --name ssl-cert-gen ssl-cert-gen
-docker cp ssl-cert-gen:/opt/certs ../
+docker cp ssl-cert-gen:/opt/certs/$DOMAIN ../
 docker rm -f ssl-cert-gen
